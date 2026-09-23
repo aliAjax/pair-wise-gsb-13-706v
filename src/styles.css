@@ -25,7 +25,6 @@ button {
 }
 
 button.secondary { background: #e8eef5; color: #172033; }
-button.danger { background: #c84b31; }
 button:disabled { opacity: .55; cursor: not-allowed; }
 
 .app {
@@ -34,7 +33,7 @@ button:disabled { opacity: .55; cursor: not-allowed; }
 }
 
 .shell {
-  max-width: 1180px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
@@ -60,7 +59,7 @@ h1 {
 
 .subtitle {
   margin: 10px 0 0;
-  max-width: 720px;
+  max-width: 760px;
   color: #5b667a;
   line-height: 1.7;
 }
@@ -83,7 +82,7 @@ h1 {
 
 .metrics {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
   margin-bottom: 18px;
 }
@@ -104,23 +103,35 @@ h1 {
 .metric strong {
   display: block;
   margin-top: 8px;
-  font-size: 30px;
+  font-size: 28px;
 }
+
+.conflict-alert { margin-bottom: 18px; }
+.panel-alert { margin-bottom: 12px; }
 
 .workspace {
   display: grid;
-  grid-template-columns: minmax(280px, 360px) 1fr;
+  grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
   gap: 18px;
+  align-items: start;
 }
 
-.panel, .list-panel {
+.side {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.panel {
   background: #fff;
   border: 1px solid #dfe7f1;
   border-radius: 8px;
   padding: 18px;
 }
 
-.panel h2, .list-panel h2 {
+.ledger { min-width: 0; }
+
+.panel h2 {
   margin: 0 0 14px;
   font-size: 20px;
 }
@@ -147,17 +158,67 @@ input, select, textarea {
 }
 
 textarea {
-  min-height: 88px;
+  min-height: 72px;
   resize: vertical;
 }
 
-.toolbar {
-  display: flex;
+.triple {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
-  flex-wrap: wrap;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.stat-grid.six {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin: 12px 0;
+}
+
+.stat {
+  background: #f4f8fb;
+  border: 1px solid #e2eaf3;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.stat span {
+  display: block;
+  font-size: 12px;
+  color: #69758c;
+}
+
+.stat strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 18px;
+}
+
+.ok-text { color: #14724f; }
+.danger-text { color: #c84b31; }
+
+.hint {
+  margin: 0;
+  font-size: 12px;
+  color: #69758c;
+  line-height: 1.6;
+}
+
+.muted {
+  margin: 8px 0 12px;
+  font-size: 12px;
+  color: #69758c;
+}
+
+.key-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
 }
 
 .record-grid {
@@ -176,7 +237,7 @@ textarea {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  align-items: start;
+  align-items: center;
 }
 
 .record-title {
@@ -185,30 +246,13 @@ textarea {
   font-weight: 800;
 }
 
-.status {
-  border-radius: 999px;
-  padding: 6px 9px;
-  background: #e8f4ef;
-  color: #14724f;
-  font-size: 12px;
-  white-space: nowrap;
-}
-
-.details {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px 14px;
-  margin: 12px 0;
-  color: #536078;
-  font-size: 14px;
-}
-
 .note {
   color: #445069;
   background: #eef5fb;
   border-radius: 8px;
   padding: 10px;
   margin: 0 0 12px;
+  font-size: 13px;
 }
 
 .actions {
@@ -217,44 +261,20 @@ textarea {
   flex-wrap: wrap;
 }
 
-.mini-chart {
-  display: grid;
-  gap: 8px;
-  margin-top: 16px;
-}
-
-.bar {
-  display: grid;
-  grid-template-columns: 92px 1fr 42px;
-  gap: 10px;
-  align-items: center;
-  color: #536078;
-  font-size: 13px;
-}
-
-.bar-track {
-  height: 10px;
-  border-radius: 999px;
-  background: #e7edf4;
-  overflow: hidden;
-}
-
-.bar-fill {
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #176b87, #64b6ac);
-}
-
 .empty {
   text-align: center;
   color: #69758c;
   padding: 32px 12px;
 }
 
-@media (max-width: 860px) {
+.plate-tag {
+  margin: 2px 6px 2px 0;
+}
+
+@media (max-width: 960px) {
   .app { padding: 18px; }
   .topbar, .workspace { grid-template-columns: 1fr; }
   .stack { justify-content: flex-start; }
-  .metrics { grid-template-columns: 1fr; }
-  .details { grid-template-columns: 1fr; }
+  .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat-grid.six { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
